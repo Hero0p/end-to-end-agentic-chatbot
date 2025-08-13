@@ -2,6 +2,7 @@ import streamlit as st
 from src.langgraph.ui.streamlitui.loadui import LoadStreamlitUI
 from src.langgraph.LLMS.groqllm import GroqLLM
 from src.langgraph.graphs.graph_builder import GraphBuilder
+from src.langgraph.ui.streamlitui.display_result import DisplayResultStreamlit
 
 def load_langgraph_ui():
     """
@@ -34,11 +35,14 @@ def load_langgraph_ui():
             graph_builder = GraphBuilder(model=model)
             try:
                 graph = graph_builder.set_up_graph(usecase)
+                print(user_message)
+                DisplayResultStreamlit(usecase, graph, user_message).display_result_on_ui()
             except Exception as e:
                 st.error(f"Error: Graph setup failed {e}")
 
         except Exception as e:
             st.error(f"Error: {e}")
+            return
 
         
        

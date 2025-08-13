@@ -25,7 +25,7 @@ class LoadStreamlitUI:
             )
             if self.user_controls['selected LLM'] == "Groq":
                 groq_model_options = self.config.get_groq_model_options()
-                self.user_controls['selected Groq Model'] = st.selectbox(
+                self.user_controls['selected_groq_model'] = st.selectbox(
                     "Select Groq Model",
                     options=groq_model_options,
                 )
